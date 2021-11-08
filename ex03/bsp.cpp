@@ -17,9 +17,9 @@ bool    bsp(
     Point b2c = c - b;
     Point c2a = a - c;
 
-    Point a2p = point - a;
-    Point b2p = point - b;
-    Point c2p = point - c;
+    Point a2p = (point - a);
+    Point b2p = (point - b);
+    Point c2p = (point - c);
     
     Fixed cpa = Point::cross_prod(a2b, a2p);
     Fixed cpb = Point::cross_prod(b2c, b2p);

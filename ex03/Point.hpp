@@ -1,7 +1,7 @@
 #ifndef CPP02_EX03_POINT_HPP_
 # define CPP02_EX03_POINT_HPP_
 
-#include "Fixed.hpp"
+# include "Fixed.hpp"
 
 class Point {
     public:
@@ -12,8 +12,9 @@ class Point {
         Point(const Point &from);
         Point& operator=(const Point &rhs);
 
-        const Fixed&   GetX(void) const;
-        const Fixed&   GetY(void) const;
+        const Fixed&    GetX(void) const;
+        const Fixed&    GetY(void) const;
+        Point           Shorten(void) const;
 
         static Fixed    cross_prod(
             const Point& v1,

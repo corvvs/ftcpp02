@@ -1,7 +1,7 @@
 #ifndef CPP02_EX00_FIXED_HPP_
 # define CPP02_EX00_FIXED_HPP_
 
-#include <iostream>
+# include <iostream>
 
 class Fixed {
     public:

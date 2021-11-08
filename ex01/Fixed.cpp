@@ -5,7 +5,7 @@ Fixed::Fixed(): bits_(0) {
     std::cout << "Fixed() Called" << std::endl;
 }
 
-Fixed::Fixed(int const val){
+Fixed::Fixed(int const val) {
     std::cout << "Fixed(int const) Called" << std::endl;
     int shifted = val << Fixed::kFractionalBits;
     int reshifted = shifted >> Fixed::kFractionalBits;
@@ -16,7 +16,7 @@ Fixed::Fixed(int const val){
     }
 }
 
-Fixed::Fixed(float const val){
+Fixed::Fixed(float const val) {
     std::cout << "Fixed(float const) Called" << std::endl;
     double fb2 = (double)(1 << Fixed::kFractionalBits);
     double pval = val * fb2;
@@ -42,7 +42,7 @@ Fixed::Fixed(const Fixed &from) {
     bits_ = from.getRawBits();
 }
 
-Fixed &Fixed::operator=(const Fixed &rhs) {
+Fixed&  Fixed::operator=(const Fixed &rhs) {
     std::cout << "= Called" << std::endl;
     bits_ = rhs.getRawBits();
     return *this;
@@ -59,11 +59,12 @@ void    Fixed::setRawBits(int const raw) {
 int     Fixed::toInt(void) const {
     return bits_ >> Fixed::kFractionalBits;
 }
+
 float   Fixed::toFloat(void) const {
     double fb2 = (double)(1 << Fixed::kFractionalBits);
     return bits_ / fb2;
 }
 
-std::ostream& operator<<(std::ostream& stream, const Fixed& value) {
+std::ostream&   operator<<(std::ostream& stream, const Fixed& value) {
     return stream << value.toFloat();
 }

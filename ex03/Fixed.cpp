@@ -52,9 +52,7 @@ Fixed::Fixed(float const val){
 
 Fixed::~Fixed() {}
 
-Fixed::Fixed(const Fixed &from) {
-    bits_ = from.getRawBits();
-}
+Fixed::Fixed(const Fixed &from): bits_(from.getRawBits()) {}
 
 Fixed &Fixed::operator=(const Fixed &rhs) {
     bits_ = rhs.getRawBits();
@@ -75,6 +73,10 @@ int     Fixed::toInt(void) const {
 float   Fixed::toFloat(void) const {
     double fb2 = (double)(1 << Fixed::kFractionalBits);
     return bits_ / fb2;
+}
+
+Fixed   Fixed::abs(void) const {
+    return *this >= 0 ? Fixed(*this) : Fixed(0) - *this;
 }
 
 Fixed&  Fixed::min(Fixed& f1, Fixed& f2) {

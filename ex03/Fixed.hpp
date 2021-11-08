@@ -1,7 +1,7 @@
 #ifndef CPP02_EX03_FIXED_HPP_
 # define CPP02_EX03_FIXED_HPP_
 
-#include <iostream>
+# include <iostream>
 
 class Fixed {
     public:
@@ -17,6 +17,7 @@ class Fixed {
         void    setRawBits(int const raw);
         int     toInt(void) const;
         float   toFloat(void) const;
+        Fixed   abs(void) const;
 
 
         Fixed& operator++();

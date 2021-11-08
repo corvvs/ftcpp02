@@ -13,12 +13,12 @@ void    test(
     Point const a,
     Point const b,
     Point const c,
-    Point const point
+    float px, float py
 ) {
+    Point point(px, py);
     bool result = bsp(a, b, c, point);
     std::cout
-        << "Testing Point is: "
-        << point
+        << "Testing Point is: (" << px << ", " << py <<")"
         << std::endl;
     std::cout
         << (expected == result ? "\x1B[92m[ok] " : "\x1B[91m[KO] ")
@@ -29,10 +29,12 @@ void    test(
 }
 
 int main( void ) {
+    const Point Z = Point();
+    std::cout << Z << std::endl;
+
     const Point A(1, 1);
     Point B(3, 5);
     const Point C(7, -1);
-
     std::cout
         << "Triangle is: "
         << A
@@ -41,30 +43,30 @@ int main( void ) {
         << " - "
         << C
         << std::endl;
-    test(false, A, B, C, A);
-    test(false, A, B, C, B);
-    test(false, A, B, C, C);
-    test(false, A, B, C, Point(2, 3));
-    test(false, A, B, C, Point(2.0f, 3.0f));
-    test(true,  A, B, C, Point(2.1f, 3.0f));
-    test(true,  A, B, C, Point(2.01f, 3.0f));
-    test(true,  A, B, C, Point(2.001f, 3.0f));
-    test(false, A, B, C, Point(1.9f, 3.0f));
-    test(false, A, B, C, Point(1.99f, 3.0f));
-    test(false, A, B, C, Point(1.999f, 3.0f));
-    test(true , A, B, C, Point(4.3333, 3));
-    test(false, A, B, C, Point(4.34, 3));
-    test(false, A, C, B, A);
-    test(false, A, C, B, B);
-    test(false, A, C, B, C);
-    test(false, A, C, B, Point(2, 3));
-    test(false, A, C, B, Point(2.0f, 3.0f));
-    test(true,  A, C, B, Point(2.1f, 3.0f));
-    test(true,  A, C, B, Point(2.01f, 3.0f));
-    test(true,  A, C, B, Point(2.001f, 3.0f));
-    test(false, A, C, B, Point(1.9f, 3.0f));
-    test(false, A, C, B, Point(1.99f, 3.0f));
-    test(false, A, C, B, Point(1.999f, 3.0f));
+    test(false, A, B, C, A.GetX().toFloat(), A.GetY().toFloat());
+    test(false, A, B, C, B.GetX().toFloat(), B.GetY().toFloat());
+    test(false, A, B, C, C.GetX().toFloat(), C.GetY().toFloat());
+    test(false, A, B, C, 2, 3);
+    test(false, A, B, C, 2.0f, 3.0f);
+    test(true,  A, B, C, 2.1f, 3.0f);
+    test(true,  A, B, C, 2.01f, 3.0f);
+    test(true,  A, B, C, 2.001f, 3.0f);
+    test(false, A, B, C, 1.9f, 3.0f);
+    test(false, A, B, C, 1.99f, 3.0f);
+    test(false, A, B, C, 1.999f, 3.0f);
+    test(true , A, B, C, 4.3333, 3);
+    test(false, A, B, C, 4.34, 3);
+    test(false, A, C, B, A.GetX().toFloat(), A.GetY().toFloat());
+    test(false, A, C, B, B.GetX().toFloat(), B.GetY().toFloat());
+    test(false, A, C, B, C.GetX().toFloat(), C.GetY().toFloat());
+    test(false, A, C, B, 2, 3);
+    test(false, A, C, B, 2.0f, 3.0f);
+    test(true,  A, C, B, 2.1f, 3.0f);
+    test(true,  A, C, B, 2.01f, 3.0f);
+    test(true,  A, C, B, 2.001f, 3.0f);
+    test(false, A, C, B, 1.9f, 3.0f);
+    test(false, A, C, B, 1.99f, 3.0f);
+    test(false, A, C, B, 1.999f, 3.0f);
 
     B = Point(-3, 5);
     std::cout
@@ -75,11 +77,11 @@ int main( void ) {
         << " - "
         << C
         << std::endl;
-    test(false, A, B, C, A);
-    test(false, A, B, C, B);
-    test(false, A, B, C, C);
-    test(false, A, B, C, Point(-1, 4));
-    test(true , A, B, C, Point(-1, 3.7));
-    test(true , A, B, C, Point(-2.5, 4.7));
-    test(true , A, B, C, Point(0.99, 1.02));
+    test(false, A, B, C, A.GetX().toFloat(), A.GetY().toFloat());
+    test(false, A, B, C, B.GetX().toFloat(), B.GetY().toFloat());
+    test(false, A, B, C, C.GetX().toFloat(), C.GetY().toFloat());
+    test(false, A, B, C, -1, 4);
+    test(true , A, B, C, -1, 3.7);
+    test(true , A, B, C, -2.5, 4.7);
+    test(true , A, B, C, 0.99, 1.02);
 }

@@ -1,10 +1,10 @@
 #include "Point.hpp"
 
-Point::Point(): x(0), y(0) {}
+Point::Point(): x(Fixed(0)), y(Fixed(0)) {}
 
 Point::Point(float const xf, float const yf): x(Fixed(xf)), y(Fixed(yf)) {}
 
-Point::Point(const Fixed& xf, const Fixed& yf): x(xf), y(yf) {}
+Point::Point(const Fixed& xf, const Fixed& yf): x(Fixed(xf)), y(Fixed(yf)) {}
 
 Point::~Point() {}
 
@@ -18,6 +18,16 @@ const Fixed&    Point::GetY(void) const {
     return y;
 }
 
+Point   Point::Shorten(void) const {
+    Fixed ax = x.abs();
+    Fixed ay = y.abs();
+    if (ax == 0 && ay == 0) {
+        return  Point(*this);
+    }
+    Fixed amax = Fixed::max(ax, ay);
+    return Point(x / amax, y / amax);
+}
+
 Fixed   Point::cross_prod(
     const Point& v1,
     const Point& v2
@@ -27,10 +37,9 @@ Fixed   Point::cross_prod(
     return xy - yx;
 }
 
-
 Point& Point::operator=(const Point &rhs) {
-    (Fixed&)x = rhs.x;
-    (Fixed&)y = rhs.y;
+    const_cast<Fixed&>(x) = rhs.x;
+    const_cast<Fixed&>(y) = rhs.y;
     return *this;
 }
 
