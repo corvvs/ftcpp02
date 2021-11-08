@@ -1,10 +1,6 @@
 #include "Fixed.hpp"
 #include <cmath>
 
-float   AbsoluteFloat(float v) {
-    return v >= 0 ? v : -v;
-}
-
 Fixed::Fixed(): bits_(0) {
     std::cout << "Fixed() Called" << std::endl;
 }
@@ -18,16 +14,19 @@ Fixed::Fixed(int const val){
     } else {
         bits_ = shifted;
     }
-    std::cout
-        << shifted << std::endl
-        << reshifted << std::endl
-        << bits_ << std::endl;
 }
 
 Fixed::Fixed(float const val){
     std::cout << "Fixed(float const) Called" << std::endl;
     double fb2 = (double)(1 << Fixed::kFractionalBits);
-    bits_ = roundf(val * fb2);
+    double pval = val * fb2;
+    if (pval >= INT_MAX) {
+        bits_ = INT_MAX;
+    } else if (pval <= INT_MIN) {
+        bits_ = INT_MIN;
+    } else {
+        bits_ = roundf(pval);
+    }
 }
 
 Fixed::~Fixed() {
