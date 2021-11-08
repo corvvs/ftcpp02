@@ -17,14 +17,6 @@ void    test(
 ) {
     bool result = bsp(a, b, c, point);
     std::cout
-        << "Triangle is: "
-        << a
-        << " - "
-        << b
-        << " - "
-        << c
-        << std::endl;
-    std::cout
         << "Testing Point is: "
         << point
         << std::endl;
@@ -38,9 +30,17 @@ void    test(
 
 int main( void ) {
     const Point A(1, 1);
-    const Point B(3, 5);
+    Point B(3, 5);
     const Point C(7, -1);
 
+    std::cout
+        << "Triangle is: "
+        << A
+        << " - "
+        << B
+        << " - "
+        << C
+        << std::endl;
     test(false, A, B, C, A);
     test(false, A, B, C, B);
     test(false, A, B, C, C);
@@ -65,4 +65,21 @@ int main( void ) {
     test(false, A, C, B, Point(1.9f, 3.0f));
     test(false, A, C, B, Point(1.99f, 3.0f));
     test(false, A, C, B, Point(1.999f, 3.0f));
+
+    B = Point(-3, 5);
+    std::cout
+        << "Triangle is: "
+        << A
+        << " - "
+        << B
+        << " - "
+        << C
+        << std::endl;
+    test(false, A, B, C, A);
+    test(false, A, B, C, B);
+    test(false, A, B, C, C);
+    test(false, A, B, C, Point(-1, 4));
+    test(true , A, B, C, Point(-1, 3.7));
+    test(true , A, B, C, Point(-2.5, 4.7));
+    test(true , A, B, C, Point(0.99, 1.02));
 }
