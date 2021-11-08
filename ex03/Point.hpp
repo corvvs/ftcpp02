@@ -10,7 +10,7 @@ class Point {
         Point(const Fixed& xf, const Fixed& yf);
         ~Point();
         Point(const Point &from);
-        Point& operator=(const Point &rhs);
+        Point&  operator=(const Point &rhs);
 
         const Fixed&    GetX(void) const;
         const Fixed&    GetY(void) const;
